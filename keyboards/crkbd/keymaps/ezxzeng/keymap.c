@@ -6,14 +6,17 @@
  * edit it directly.
  */
 
-#define base_layer 0
-#define num_sym_layer 1
-#define right_nav_layer 2
-#define nav_layer 3
-#define mouse_layer 4
-#define fnc_layer 5
-#define right_numpad_layer_1 6
-#define right_numpad_layer_2 7
+
+enum layer_names {
+    base_layer,
+    num_sym_layer,
+    right_nav_layer,
+    nav_layer,
+    mouse_layer,
+    fnc_layer,
+    right_numpad_layer_1,
+    right_numpad_layer_2
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {[base_layer]           = LAYOUT_split_3x6_3(KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_DEL, KC_TAB, LGUI_T(KC_A), LALT_T(KC_S), LCTL_T(KC_D), LSFT_T(KC_F), KC_G, KC_H, RSFT_T(KC_J), RCTL_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT, KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ESC, KC_LCTL, LGUI_T(KC_ESC), LT(nav_layer,KC_ENT), LT(num_sym_layer,KC_BSPC), RSFT_T(KC_SPC), KC_RSFT),
                                                               [num_sym_layer]        = LAYOUT_split_3x6_3(KC_TRNS, KC_TILD, KC_COLN, KC_LPRN, KC_RPRN, KC_BSLS, KC_EQL, KC_7, KC_8, KC_9, KC_BSPC, KC_TRNS, KC_TRNS, LGUI_T(KC_GRV), LALT_T(KC_QUOT), LCTL_T(KC_LBRC), LSFT_T(KC_RBRC), KC_UNDS, KC_MINS, RSFT_T(KC_4), RCTL_T(KC_5), RALT_T(KC_6), RGUI_T(KC_SCLN), KC_TRNS, KC_TRNS, KC_PIPE, KC_DQUO, KC_LT, KC_GT, KC_SLSH, KC_0, KC_1, KC_2, KC_3, TG(right_nav_layer), KC_TRNS, KC_TRNS, KC_TRNS, LT(fnc_layer,KC_ENT), KC_TRNS, KC_TRNS, KC_TRNS),
@@ -32,7 +35,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(num_sym_layer,KC_BSPC): case RSFT_T(KC_SPC):
+        case LT(num_sym_layer,KC_BSPC):
             // Immediately select the hold action when another key is tapped.
             return true;
         default:
@@ -42,7 +45,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 }
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(num_sym_layer,KC_BSPC): case RSFT_T(KC_SPC):
+        case LT(num_sym_layer,KC_BSPC):
             // Immediately select the hold action when another key is pressed.
             return true;
         default:
