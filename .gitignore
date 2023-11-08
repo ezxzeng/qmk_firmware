@@ -1,3 +1,10 @@
+# user symlinks
+# see qmk_keymaps repo for actual content
+users/ezxzeng
+keyboards/crkbd/keymaps/ezxzeng
+keyboards/ferris/keymaps/ezxzeng
+
+
 # Junk files
 *.bak
 *.swp
@@ -111,6 +118,3 @@ compile_commands.json
 # VIA(L) files that don't belong in QMK repo
 via*.json
 /keyboards/**/keymaps/vial/*
-
-keyboards/crkbd/keymaps/ezxzeng
-keyboards/ferris/keymaps/ezxzeng
